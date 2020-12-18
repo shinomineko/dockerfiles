@@ -2,5 +2,4 @@
 
 a collection of Dockerfiles for images I create and often use
 
-most of these live on docker hub and quay under `shinomineko`
-
+most of these live on quay under `shinomineko`

@@ -15,4 +15,4 @@ RUN git checkout "${PKENV_VERSION}"
 
 ENV PATH /root/.pkenv/bin:$PATH
 
-ENTRYPOINT [ "/bin/bash" ]
+CMD [ "/bin/bash" ]

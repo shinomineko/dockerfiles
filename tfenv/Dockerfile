@@ -15,4 +15,4 @@ RUN git checkout "${TFENV_VERSION}"
 
 ENV PATH /root/.tfenv/bin:$PATH
 
-ENTRYPOINT [ "/bin/bash" ]
+CMD [ "/bin/bash" ]

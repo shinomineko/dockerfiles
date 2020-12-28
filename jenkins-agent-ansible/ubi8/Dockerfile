@@ -17,6 +17,7 @@ RUN dnf install -q -y \
   git \
   git-lfs \
   java-11-openjdk-devel \
+  make \
   openssh-clients \
   openssl \
   python38

@@ -6,6 +6,7 @@ RUN apt-get update -qq \
   && apt-get install -qq -y \
   bash \
   curl \
+  make \
   python3 \
   python3-pip
 

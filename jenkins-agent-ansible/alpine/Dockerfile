@@ -6,6 +6,7 @@ RUN apk add --no-cache \
   ansible \
   bash \
   curl \
+  make \
   python3 \
   py3-pip \
   && pip install pywinrm

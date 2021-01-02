@@ -9,7 +9,8 @@ ARG UID=1000
 ARG AGENT_WORKDIR=/home/${USER}/agent
 ARG REMOTING_VERSION=4.6
 
-RUN groupadd -g ${GID} ${GROUP} && useradd -m -g ${GROUP} -u ${UID} ${USER}
+RUN groupadd -g ${GID} ${GROUP} \
+  && useradd -m -g ${GROUP} -u ${UID} ${USER}
 
 RUN dnf install -q -y \
   bash \

@@ -46,4 +46,6 @@ VOLUME ${AGENT_WORKDIR}
 
 WORKDIR /home/${USER}
 
+RUN ansible-galaxy collection install community.windows
+
 ENTRYPOINT [ "jenkins-agent" ]

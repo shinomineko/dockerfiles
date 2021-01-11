@@ -6,7 +6,7 @@ RUN apk add --no-cache \
   bash \
   curl \
   make \
-  go \
+  go
 
 USER jenkins
 

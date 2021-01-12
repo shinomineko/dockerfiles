@@ -13,6 +13,8 @@ RUN apk add --no-cache \
 
 USER jenkins
 
+ENV HOME=/home/jenkins
+
 ARG GO_BASE_PATH=/usr/local/go
 
 COPY --from=src ${GO_BASE_PATH} ${GO_BASE_PATH}

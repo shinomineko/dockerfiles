@@ -1,4 +1,4 @@
-FROM quay.io/shinomineko/alpine-s6:3.12
+FROM alpine:3.12
 
 RUN apk add --no-cache \
   bash \
@@ -7,4 +7,5 @@ RUN apk add --no-cache \
   wget \
   bind-tools \
   netcat-openbsd \
-  openssh-client
+  openssh-client \
+  openssl

@@ -9,6 +9,7 @@ RUN apk add --no-cache \
   make \
   python3 \
   py3-pip \
+  sshpass \
   && pip install pywinrm
 
 USER jenkins

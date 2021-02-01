@@ -1,11 +1,11 @@
-FROM quay.io/shinomineko/alpine-s6:3.12
+FROM quay.io/shinomineko/alpine-s6:3.13
 
 RUN apk add --no-cache \
   bash \
   curl \
   git
 
-ENV TFENV_VERSION v2.0.0
+ENV TFENV_VERSION v2.1.0
 
 RUN git clone https://github.com/tfutils/tfenv.git /root/.tfenv
 

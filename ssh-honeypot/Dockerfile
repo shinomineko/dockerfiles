@@ -1,4 +1,4 @@
-FROM quay.io/shinomineko/alpine-s6:3.12
+FROM quay.io/shinomineko/alpine-s6:3.13
 
 RUN apk add --no-cache \
   bash \

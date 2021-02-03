@@ -14,6 +14,4 @@ RUN pip3 install ansible pywinrm
 
 USER jenkins
 
-RUN ansible-galaxy collection install community.windows
-
 ENTRYPOINT [ "jenkins-agent" ]

@@ -14,6 +14,4 @@ RUN apk add --no-cache \
 
 USER jenkins
 
-RUN ansible-galaxy collection install community.windows
-
 ENTRYPOINT [ "jenkins-agent" ]

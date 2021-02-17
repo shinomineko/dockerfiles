@@ -1,6 +1,6 @@
 FROM alpine:3.13
 
-ARG S6_VERSION=v2.2.0.1
+ARG S6_VERSION=v2.2.0.3
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-amd64.tar.gz /tmp/
 

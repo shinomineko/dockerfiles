@@ -9,3 +9,5 @@ RUN apk add --no-cache \
   netcat-openbsd \
   openssh-client \
   openssl
+
+CMD [ "/bin/bash" ]

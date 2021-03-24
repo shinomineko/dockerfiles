@@ -3,7 +3,9 @@ FROM jenkins/inbound-agent:4.6-1-jdk11
 USER root
 
 RUN apt-get update -qq \
-  && apt-get install -qq -y \
+  && apt-get upgrade -qq -y
+
+RUN apt-get install -qq -y \
   bash \
   curl \
   make \

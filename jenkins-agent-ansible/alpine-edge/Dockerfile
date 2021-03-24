@@ -4,6 +4,9 @@ USER root
 
 RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories
 
+RUN apk update \
+  && apk upgrade
+
 RUN apk add --no-cache \
   ansible \
   bash \

@@ -12,6 +12,8 @@ ARG REMOTING_VERSION=4.6
 RUN groupadd -g ${GID} ${GROUP} \
   && useradd -m -g ${GROUP} -u ${UID} ${USER}
 
+RUN dnf upgrade -q -y
+
 RUN dnf install -q -y \
   bash \
   curl \

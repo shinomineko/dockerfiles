@@ -1,9 +1,8 @@
 FROM quay.io/shinomineko/alpine-s6:3.13
 
 RUN apk update \
-  && apk upgrade
-
-RUN apk add --no-cache \
+  && apk upgrade \
+  && apk add --no-cache \
   bash \
   curl \
   git \

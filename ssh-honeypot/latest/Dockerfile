@@ -1,4 +1,4 @@
-FROM quay.io/shinomineko/alpine-s6:3.13
+FROM shinomineko/alpine-s6:3.13
 
 RUN apk update \
   && apk upgrade \

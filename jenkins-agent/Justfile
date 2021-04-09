@@ -1,0 +1,5 @@
+build TAG:
+	DOCKER_BUILDKIT=1 docker build --pull --no-cache -t shinomineko/jenkins-agent:{{ TAG }} -f Dockerfile-{{ TAG }} .
+
+push:
+	docker push -a shinomineko/jenkins-agent

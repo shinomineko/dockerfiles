@@ -10,6 +10,8 @@ on:
     paths:
       - alpine-s6/**
 
+  pull_request:
+
 jobs:
   docker:
     runs-on: ubuntu-latest

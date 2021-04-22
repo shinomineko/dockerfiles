@@ -28,7 +28,7 @@ jobs:
       - name: login
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKERHUB_USER }}
+          username: shinomineko
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: build and push - 3.12

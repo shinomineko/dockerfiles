@@ -4,6 +4,9 @@ name: toolbox
 on:
   workflow_dispatch:
 
+  schedule:
+    - cron: '0 2 * * 6'
+
   push:
     branches:
       - main

@@ -1,5 +1,0 @@
-build TAG:
-	DOCKER_BUILDKIT=1 docker build --pull --no-cache -t shinomineko/alpine-s6:{{ TAG }} -f Dockerfile-{{ TAG }} .
-
-push:
-	docker push -a shinomineko/alpine-s6

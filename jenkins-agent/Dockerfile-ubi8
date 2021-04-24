@@ -4,7 +4,7 @@ USER root
 
 ARG USER=jenkins
 ARG AGENT_WORKDIR=/home/${USER}/agent
-ARG REMOTING_VERSION=4.6
+ARG REMOTING_VERSION=4.7
 
 RUN adduser ${USER} \
   && dnf upgrade -q -y \

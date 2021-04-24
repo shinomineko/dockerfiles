@@ -26,18 +26,18 @@ jobs:
       - name: setup docker buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: login to dockerhub
+      - name: login - docker hub
         uses: docker/login-action@v1
         with:
           username: shinomineko
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: loging to ghcr
+      - name: login - quay
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GLOBAL_GITHUB_TOKEN }}
+          registry: quay.io
+          username: ${{ secrets.QUAY_USER }}
+          password: ${{ secrets.QUAY_TOKEN }}
 
       - name: build and push
         uses: docker/build-push-action@v2.4.0
@@ -49,4 +49,4 @@ jobs:
           push: true
           tags: |
             shinomineko/toolbox:latest
-            ghcr.io/${{ github.repository_owner }}/toolbox:latest
+            quay.io/shinomineko/toolbox:latest

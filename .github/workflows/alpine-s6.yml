@@ -10,8 +10,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - alpine-s6/**
 
   pull_request:
 

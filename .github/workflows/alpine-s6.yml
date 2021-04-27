@@ -35,19 +35,7 @@ jobs:
           username: ${{ secrets.QUAY_USER }}
           password: ${{ secrets.QUAY_TOKEN }}
 
-      - name: build and push - 3.12
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./alpine-s6
-          file: ./alpine-s6/Dockerfile-3.12
-          pull: true
-          no-cache: true
-          push: true
-          tags: |
-            shinomineko/alpine-s6:3.12
-            quay.io/shinomineko/alpine-s6:3.12
-
-      - name: build and push - 3.13
+      - name: build and push
         uses: docker/build-push-action@v2.4.0
         with:
           context: ./alpine-s6

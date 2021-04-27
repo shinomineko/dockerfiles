@@ -2,16 +2,12 @@
 name: alpine-s6
 
 on:
-  workflow_dispatch:
-
   schedule:
-    - cron: '0 2 * * 6'
+    - cron: "0 0 * * *"
 
   push:
     branches:
       - main
-
-  pull_request:
 
 jobs:
   docker:

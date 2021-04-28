@@ -9,6 +9,7 @@ RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories \
   ansible \
   bash \
   curl \
+  jq \
   make \
   python3 \
   py3-pip \

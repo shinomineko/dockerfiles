@@ -55,6 +55,16 @@ jobs:
             shinomineko/jenkins-agent:alpine
             quay.io/shinomineko/jenkins-agent:alpine
 
+      - name: build and push - nmap
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: ./nmap
+          file: ./nmap/Dockerfile
+          push: true
+          tags: |
+            shinomineko/nmap:latest
+            quay.io/shinomineko/nmap:latest
+
       - name: build and push - ssh-honeypot
         uses: docker/build-push-action@v2.4.0
         with:

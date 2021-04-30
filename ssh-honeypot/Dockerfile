@@ -19,6 +19,7 @@ RUN apk update \
   clang \
   json-c-dev \
   libssh2-dev \
+  && rm -rf /var/cache/apk/* \
   && git clone https://github.com/droberson/ssh-honeypot.git
 
 WORKDIR /ssh-honeypot/

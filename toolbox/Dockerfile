@@ -11,6 +11,7 @@ RUN apk update \
   bind-tools \
   netcat-openbsd \
   openssh-client \
-  openssl
+  openssl \
+  && rm -rf /var/cache/apk/*
 
 CMD [ "/bin/bash" ]

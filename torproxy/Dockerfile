@@ -4,7 +4,8 @@ LABEL maintainer "sc@shinomin.me"
 RUN apk update \
   && apk upgrade \
   && apk add --no-cache \
-  tor
+  tor \
+  && rm -rf /var/cache/apk/*
 
 COPY torrc.default /etc/tor/torrc.default
 

@@ -5,6 +5,7 @@ RUN apk update \
   && apk upgrade \
   && apk add --no-cache \
 	transmission-daemon \
+  && rm -rf /var/cache/apk/* \
 	&& mkdir -p /transmission/download \
 		/transmission/watch \
 		/transmission/incomplete \

@@ -7,6 +7,8 @@ ARG USER=jenkins
 ARG AGENT_WORKDIR=/home/${USER}/agent
 ARG REMOTING_VERSION=4.7
 
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+
 RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories \
   && apk update \
   && apk upgrade \

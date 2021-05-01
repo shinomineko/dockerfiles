@@ -12,6 +12,11 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        images: [aria2, jenkins-agent, nmap, ssh-honeypot, toolbox, torproxy, transmission]
+
     steps:
       - name: checkout
         uses: actions/checkout@v2.3.4
@@ -35,72 +40,13 @@ jobs:
           username: ${{ secrets.QUAY_USER }}
           password: ${{ secrets.QUAY_TOKEN }}
 
-      - name: build and push - aria2
+      - name: build and push
         uses: docker/build-push-action@v2.4.0
         with:
-          context: ./aria2
-          file: ./aria2/Dockerfile
+          context: ./${{ matrix.images }}
+          file: ./${{ matrix.images }}/Dockerfile
           push: true
           tags: |
-            shinomineko/aria2:latest
-            quay.io/shinomineko/aria2:latest
+            shinomineko/${{ matrix.images }}:latest
+            quay.io/shinomineko/${{ matrix.images }}:latest
 
-      - name: build and push - jenkins-agent
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./jenkins-agent
-          file: ./jenkins-agent/Dockerfile
-          push: true
-          tags: |
-            shinomineko/jenkins-agent:alpine
-            quay.io/shinomineko/jenkins-agent:alpine
-
-      - name: build and push - nmap
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./nmap
-          file: ./nmap/Dockerfile
-          push: true
-          tags: |
-            shinomineko/nmap:latest
-            quay.io/shinomineko/nmap:latest
-
-      - name: build and push - ssh-honeypot
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./ssh-honeypot
-          file: ./ssh-honeypot/Dockerfile
-          push: true
-          tags: |
-            shinomineko/ssh-honeypot:latest
-            quay.io/shinomineko/ssh-honeypot:latest
-
-      - name: build and push - toolbox
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./toolbox
-          file: ./toolbox/Dockerfile
-          push: true
-          tags: |
-            shinomineko/toolbox:latest
-            quay.io/shinomineko/toolbox:latest
-
-      - name: build and push - torproxy
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./torproxy
-          file: ./torproxy/Dockerfile
-          push: true
-          tags: |
-            shinomineko/torproxy:latest
-            quay.io/shinomineko/torproxy:latest
-
-      - name: build and push - transmission
-        uses: docker/build-push-action@v2.4.0
-        with:
-          context: ./transmission
-          file: ./transmission/Dockerfile
-          push: true
-          tags: |
-            shinomineko/transmission:latest
-            quay.io/shinomineko/transmission:latest

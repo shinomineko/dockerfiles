@@ -2,9 +2,8 @@ FROM alpine:3.13
 LABEL maintainer "sc@shinomin.me"
 
 RUN apk update \
-  && apk upgrade \
-  && apk add --no-cache \
-  nmap \
-  && rm -rf /var/cache/apk/*
+	&& apk upgrade \
+	&& apk add --no-cache nmap \
+	&& rm -rf /var/cache/apk/*
 
 ENTRYPOINT [ "nmap" ]

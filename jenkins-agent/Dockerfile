@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM shinomineko/alpine-s6:3.13
 LABEL maintainer "sc@shinomin.me"
 
 USER root

@@ -45,6 +45,16 @@ jobs:
             shinomineko/alpine-s6:3.13
             quay.io/shinomineko/alpine-s6:3.13
 
+      - name: build and push - aria2
+        uses: docker/build-push-action@v2.4.0
+        with:
+          context: ./aria2
+          file: ./aria2/Dockerfile
+          push: true
+          tags: |
+            shinomineko/aria2:latest
+            quay.io/shinomineko/aria2:latest
+
       - name: build and push - jenkins-agent
         uses: docker/build-push-action@v2.4.0
         with:

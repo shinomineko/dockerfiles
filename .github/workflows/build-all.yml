@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        images: [aria2, htpasswd, httpie, jenkins-agent, nmap, shellcheck, ssh-honeypot, toolbox, torproxy, transmission]
+        images: [aria2, htpasswd, httpie, jenkins-agent, nmap, shellcheck, squid, ssh-honeypot, toolbox, torproxy, transmission]
 
     steps:
       - name: checkout

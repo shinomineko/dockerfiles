@@ -9,8 +9,7 @@ ARG REMOTING_VERSION=4.7
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm
 
-RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories \
-	&& apk update \
+RUN apk update \
 	&& apk upgrade \
 	&& apk add --no-cache \
 	ansible \

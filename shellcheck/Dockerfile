@@ -4,6 +4,7 @@ LABEL maintainer "sc@shinomin.me"
 RUN apk update \
 	&& apk upgrade \
 	&& apk add --no-cache \
+	bash \
 	file \
 	shellcheck \
 	&& rm -rf /var/cache/apk/*

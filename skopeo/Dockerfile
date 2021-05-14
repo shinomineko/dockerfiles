@@ -8,6 +8,6 @@ RUN apk update \
 	skopeo \
 	&& rm -rf /var/cache/apk/*
 
-WORKDIR /img
+WORKDIR /data
 
 ENTRYPOINT [ "/usr/bin/skopeo" ]

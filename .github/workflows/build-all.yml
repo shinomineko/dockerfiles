@@ -23,6 +23,7 @@ jobs:
             jenkins-agent,
             nmap,
             shellcheck,
+            skopeo,
             squid,
             ssh-honeypot,
             toolbox,

@@ -1,5 +1,5 @@
 ---
-name: build all
+name: build adhoc
 
 on:
   schedule:
@@ -12,23 +12,6 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        images:
-          [
-            aria2,
-            htpasswd,
-            httpie,
-            jenkins-agent,
-            nmap,
-            shellcheck,
-            squid,
-            ssh-honeypot,
-            toolbox,
-            torproxy,
-            transmission,
-          ]
 
     steps:
       - name: checkout
@@ -53,11 +36,10 @@ jobs:
           username: ${{ secrets.QUAY_USER }}
           password: ${{ secrets.QUAY_TOKEN }}
 
-      - name: build and push
-        uses: docker/build-push-action@v2.4.0
+      - uses: docker/build-push-action@v2.4.0
         with:
-          context: ./${{ matrix.images }}
+          context: ./jenkins-agent/aws
           push: true
           tags: |
-            shinomineko/${{ matrix.images }}:latest
-            quay.io/shinomineko/${{ matrix.images }}:latest
+            shinomineko/jenkins-agent:aws
+            quay.io/shinomineko/jenkins-agent:aws

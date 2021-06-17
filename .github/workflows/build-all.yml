@@ -17,7 +17,6 @@ jobs:
       matrix:
         images:
           [
-            alpine-glibc,
             aria2,
             htpasswd,
             httpie,

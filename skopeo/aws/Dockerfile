@@ -1,4 +1,4 @@
-FROM alpine:3.13
+FROM alpine:3.14
 LABEL maintainer "sc@shinomin.me"
 
 ARG GLIBC_VERSION=2.33-r0

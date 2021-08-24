@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.QUAY_TOKEN }}
 
       - name: jenkins-agent-aws
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: ./jenkins-agent/aws
           push: true
@@ -46,7 +46,7 @@ jobs:
             quay.io/shinomineko/jenkins-agent:aws
 
       - name: skopeo-aws
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: ./skopeo/aws
           push: true
@@ -55,7 +55,7 @@ jobs:
             quay.io/shinomineko/skopeo:aws
 
       - name: alpine-glibc
-        uses: docker/build-push-action@v2.6.1
+        uses: docker/build-push-action@v2.7.0
         with:
           context: ./alpine-glibc
           push: true

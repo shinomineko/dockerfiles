@@ -1,9 +1,8 @@
-FROM python:3-alpine
+FROM python:3-slim-bullseye
 
-RUN apk update \
-	&& apk upgrade \
-	&& apk add bash vim --no-cache \
-	&& rm -rf /var/cache/apk/* \
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& pip install --no-cache-dir jenkins-job-builder
 
 WORKDIR /jjb

@@ -21,6 +21,7 @@ jobs:
             htpasswd,
             httpie,
             jenkins-agent,
+            jjb,
             nmap,
             shellcheck,
             skopeo,

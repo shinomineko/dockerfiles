@@ -1,12 +1,26 @@
-REPO ?= docker.io/shinomineko
-
 .PHONY: build
 build: ## build all the dockerfiles in the repository
 	@$(CURDIR)/build-all.sh
 
-.PHONY: image
-image: ## build a specific image (IMAGE=toolbox make image)
-	@docker build --rm -t $(REPO)/$(IMAGE) $(IMAGE)
+.PHONY: test
+test: shellcheck diff ## run tests on the repository
+
+# allocate a tty if running interactively
+INTERACTIVE := $(shell [ -t 0 ] && echo 1 || echo 0)
+ifeq ($(INTERACTIVE), 1)
+	DOCKERFLAGS += -t
+endif
+
+.PHONY: shellcheck
+shellcheck: ## run shellcheck on the scripts
+	docker run --rm -i $(DOCKERFLAGS) \
+		--name dot-shellcheck \
+		-v $(CURDIR):/src:ro \
+		shinomineko/shellcheck ./shellcheck.sh
+
+.PHONY: diff
+diff: ## test the changes to the dockerfiles
+	@$(CURDIR)/test.sh
 
 .PHONY: help
 help:

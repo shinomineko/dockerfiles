@@ -1,10 +1,12 @@
+REPO ?= docker.io/shinomineko
+
 .PHONY: build
 build: ## build all the dockerfiles in the repository
 	@$(CURDIR)/build-all.sh
 
 .PHONY: image
 image: ## build a specific image (IMAGE=toolbox make image)
-	@docker build --rm -t shinomineko/$(IMAGE) $(IMAGE)
+	@docker build --rm -t $(REPO)/$(IMAGE) $(IMAGE)
 
 .PHONY: help
 help:

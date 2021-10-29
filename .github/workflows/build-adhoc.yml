@@ -28,4 +28,4 @@ jobs:
           context: ./nginx-unprivileged/mainline-alpine
           push: true
           tags: |
-            shinominekonginx-unprivileged:mainline-alpine
+            shinomineko/nginx-unprivileged:mainline-alpine

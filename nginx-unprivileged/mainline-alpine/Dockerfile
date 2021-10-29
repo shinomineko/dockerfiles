@@ -2,13 +2,7 @@
 
 FROM nginx:mainline-alpine as builder
 
-ARG ENABLED_MODULES
-
-RUN set -ex \
-    && if [ "$ENABLED_MODULES" = "" ]; then \
-        echo "No additional modules enabled, exiting"; \
-        exit 1; \
-    fi
+ARG ENABLED_MODULES="headers-more"
 
 COPY ./ /modules/
 

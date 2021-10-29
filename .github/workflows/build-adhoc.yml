@@ -28,7 +28,5 @@ jobs:
         with:
           context: ./nginx-unprivileged/mainline-alpine
           push: true
-          build-args:
-            - ENABLED_MODULES: headers-more
           tags: |
             shinominekonginx-unprivileged:mainline-alpine

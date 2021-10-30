@@ -61,6 +61,9 @@ COPY --from=builder /tmp/packages /tmp/packages
 COPY --chown=nginx:root ./nginx.conf /etc/nginx/nginx.conf
 USER root
 RUN set -ex \
+    && apk update \
+    && apk upgrade \
+    && rm -rf /var/cache/apk/* \
     && . /tmp/packages/modules.env \
     && for module in $BUILT_MODULES; do \
            apk add --no-cache --allow-untrusted /tmp/packages/nginx-module-${module}-${NGINX_VERSION}*.apk; \

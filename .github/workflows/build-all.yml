@@ -9,24 +9,8 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        images:
-          [
-            aria2,
-            htpasswd,
-            httpie,
-            jenkins-agent,
-            jenkins-job-builder,
-            nmap,
-            shellcheck,
-            skopeo,
-            squid,
-            ssh-honeypot,
-            toolbox,
-            torproxy,
-            transmission,
-          ]
+    env:
+      PUSH: 'true'
     steps:
       - uses: actions/checkout@v2.3.5
       - uses: docker/setup-qemu-action@v1.2.0
@@ -35,15 +19,5 @@ jobs:
         with:
           username: shinomineko
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - uses: docker/login-action@v1.10.0
-        with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_USER }}
-          password: ${{ secrets.QUAY_TOKEN }}
-      - uses: docker/build-push-action@v2.7.0
-        with:
-          context: ./${{ matrix.images }}
-          push: true
-          tags: |
-            shinomineko/${{ matrix.images }}:latest
-            quay.io/shinomineko/${{ matrix.images }}:latest
+      - run: make build
+        shell: bash

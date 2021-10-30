@@ -21,6 +21,7 @@ RUN apk update \
 	openjdk11 \
 	openssh-client \
 	openssl \
+	parallel \
 	python3 \
 	py3-pip \
 	sshpass \

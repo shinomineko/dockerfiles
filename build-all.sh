@@ -3,6 +3,8 @@ set -eo pipefail
 
 PUSH="${PUSH:-false}"
 REPO="${REPO:-docker.io/shinomineko}"
+SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
+JOBS="${JOBS:-2}"
 ERRORS=()
 
 build_and_push() {
@@ -46,9 +48,12 @@ main() {
 	unset IFS
 
 	# shellcheck disable=SC2068
-	for f in ${files[@]}; do
-		do_file "$f"
-	done
+	# for f in ${files[@]}; do
+	# 	do_file "$f"
+	# done
+
+	echo "running in parallel with ${JOBS} jobs"
+	parallel --verbose --tag --ungroup -j"${JOBS}" "$SCRIPT" do_file "{1}" ::: "${files[@]}"
 
 	if [[ ${#ERRORS[@]} -eq 0 ]]; then
 		echo "[OK] no errors"
@@ -59,4 +64,15 @@ main() {
 	fi
 }
 
-main "$@"
+run() {
+	args=$*
+	f=$1
+
+	if [[ "$f" == "" ]]; then
+		main "$args"
+	else
+		$args
+	fi
+}
+
+run "$@"

@@ -5,7 +5,7 @@ PUSH="${PUSH:-false}"
 REPO="${REPO:-docker.io/shinomineko}"
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 JOBS="${JOBS:-2}"
-ERRORS=()
+ERRORS="$(pwd)/errors"
 
 build_and_push() {
 	base=$1
@@ -38,7 +38,7 @@ do_file() {
 	{
 		build_and_push "${base}" "${suite}" "${build_dir}"
 	} || {
-		ERRORS+=("$base")
+		echo "${base}:${suite}" >> "$ERRORS"
 	}
 }
 
@@ -55,11 +55,11 @@ main() {
 	echo "running in parallel with ${JOBS} jobs"
 	parallel --verbose --tag --ungroup -j"${JOBS}" "$SCRIPT" do_file "{1}" ::: "${files[@]}"
 
-	if [[ ${#ERRORS[@]} -eq 0 ]]; then
+	if [[ ! -f "$ERRORS" ]]; then
 		echo "[OK] no errors"
 	else
 		echo "[ERROR] some images did not build correctly, see below." >&2
-		echo "[ERROR] these images failed: ${ERRORS[*]}" >&2
+		echo "[ERROR] these images failed: $(cat "$ERRORS")" >&2
 		exit 1
 	fi
 }

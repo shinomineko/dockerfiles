@@ -47,11 +47,6 @@ main() {
 	mapfile -t files < <(find -L . -iname '*Dockerfile' | sed 's|./||' | sort)
 	unset IFS
 
-	# shellcheck disable=SC2068
-	# for f in ${files[@]}; do
-	# 	do_file "$f"
-	# done
-
 	echo "running in parallel with ${JOBS} jobs"
 	parallel --verbose --tag --ungroup -j"${JOBS}" "$SCRIPT" do_file "{1}" ::: "${files[@]}"
 

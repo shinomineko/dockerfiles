@@ -9,6 +9,7 @@ RUN apk update \
 	bash \
 	ca-certificates \
 	curl \
+	gettext \
 	git \
 	jq \
 	make \

@@ -6,29 +6,42 @@ on:
     types:
       - completed
 jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - shell: bash
+        run: |
+          IFS=$'\n'
+          mapfile -t files < <(find -L . -iname '*Dockerfile' | sed 's|./||' | sed 's|/Dockerfile||' | sed 's|/|:|' | sort)
+          unset IFS
+
+          json="{\"image\":["
+          for f in ${files[@]}; do
+            j="\"$f\","
+            if [[ "$json" != *"$j"* ]]; then
+              json=$json$j
+            fi
+          done
+
+          # remove last "," and add closing bracket
+          if [[ "$json" == * ]]; then
+            json="${json%?}"
+          fi
+
+          json="$json]}"
+          echo $json
+
+          # set output
+          echo "::set-output name=matrix::$( echo "$json" )"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+
   trivy:
+    needs: generate-matrix
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        image: [
-          "aria2:latest",
-          "htpasswd:latest",
-          "httpie:latest",
-          "jenkins-agent:latest-alpine-jdk8",
-          "jenkins-agent:latest-alpine-jdk11",
-          "jenkins-job-builder:latest",
-          "mdbook:latest",
-          "nginx-unprivileged:mainline",
-          "nginx-unprivileged:mainline-alpine",
-          "nmap:latest",
-          "shellcheck:latest",
-          "skopeo:latest",
-          "squid:latest",
-          "ssh-honeypot:latest",
-          "toolbox:latest",
-          "torproxy:latest",
-          "transmission:latest"
-        ]
+      matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
     steps:
       - uses: aquasecurity/trivy-action@master
         with:

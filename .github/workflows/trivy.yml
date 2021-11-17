@@ -10,9 +10,23 @@ jobs:
     strategy:
       matrix:
         image: [
+          "aria2:latest",
+          "htpasswd:latest",
+          "httpie:latest",
+          "jenkins-agent:latest-alpine-jdk8",
+          "jenkins-agent:latest-alpine-jdk11",
+          "jenkins-job-builder:latest",
+          "mdbook:latest",
           "nginx-unprivileged:mainline",
           "nginx-unprivileged:mainline-alpine",
-          "toolbox:latest"
+          "nmap:latest",
+          "shellcheck:latest",
+          "skopeo:latest",
+          "squid:latest",
+          "ssh-honeypot:latest",
+          "toolbox:latest",
+          "torproxy:latest",
+          "transmission:latest"
         ]
     steps:
       - uses: aquasecurity/trivy-action@master

@@ -1,0 +1,25 @@
+---
+name: trivy
+on:
+  workflow_run:
+    workflows: ["build all"]
+    type: [completed]
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [
+          "nginx-unprivileged:mainline-alpine",
+          "toolbox:latest"
+        ]
+    steps:
+      - uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'docker.io/shinomineko/${{ matrix.image }}'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-${{ matrix.image }}.sarif'
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-${{ matrix.image }}.sarif'

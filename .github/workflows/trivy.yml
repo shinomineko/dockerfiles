@@ -8,6 +8,8 @@ on:
 jobs:
   generate-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v2
       - shell: bash
@@ -34,8 +36,6 @@ jobs:
 
           # set output
           echo "::set-output name=matrix::$( echo "$json" )"
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
 
   trivy:
     needs: generate-matrix

@@ -3,7 +3,8 @@ name: trivy
 on:
   workflow_run:
     workflows: ["build all"]
-    type: [completed]
+    types:
+      - completed
 jobs:
   trivy:
     runs-on: ubuntu-latest

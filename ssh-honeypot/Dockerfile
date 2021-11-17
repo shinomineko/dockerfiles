@@ -31,8 +31,6 @@ RUN make \
 
 EXPOSE 22
 
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod 777 /entrypoint.sh
+COPY --chmod=0777 entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]

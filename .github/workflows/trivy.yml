@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         image: [
+          "nginx-unprivileged:mainline",
           "nginx-unprivileged:mainline-alpine",
           "toolbox:latest"
         ]

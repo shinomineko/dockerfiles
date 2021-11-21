@@ -1,4 +1,5 @@
 FROM python:3-slim-bullseye
+LABEL maintainer "sc@shinomin.me"
 
 RUN apt-get update \
 	&& apt-get upgrade -y \

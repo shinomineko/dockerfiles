@@ -20,7 +20,7 @@ do_template() {
 
 	ansible localhost -m template \
 	-a "src=${TEMPLATE_SRC} dest=${TEMPLATE_DEST}" \
-	-e @${EXTRA_VARS_FILE}
+	-e @"${EXTRA_VARS_FILE}"
 }
 
 main() {

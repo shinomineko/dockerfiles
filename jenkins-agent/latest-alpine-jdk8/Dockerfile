@@ -13,7 +13,6 @@ RUN apk update \
 	git \
 	jq \
 	make \
-	openjdk11 \
 	openssh-client \
 	openssl \
 	parallel \

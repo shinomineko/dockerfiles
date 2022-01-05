@@ -13,8 +13,8 @@ RUN set -ex \
 COPY ./ /modules/
 
 RUN set -ex \
-    && apt-get update \
-    && apt-get install -y --no-install-suggests --no-install-recommends \
+    && apt update \
+    && apt install -y --no-install-suggests --no-install-recommends \
                 patch make wget mercurial devscripts debhelper dpkg-dev \
                 quilt lsb-release build-essential libxml2-utils xsltproc \
                 equivs git g++ \
@@ -33,7 +33,7 @@ RUN set -ex \
             # some modules require build dependencies
             if [ -f /modules/$module/build-deps ]; then \
                 echo "Installing $module build dependencies"; \
-                apt-get update && apt-get install -y --no-install-suggests --no-install-recommends $(cat /modules/$module/build-deps | xargs); \
+                apt update && apt install -y --no-install-suggests --no-install-recommends $(cat /modules/$module/build-deps | xargs); \
             fi; \
             # if a module has a build dependency that is not in a distro, provide a
             # shell script to fetch/build/install those
@@ -65,11 +65,11 @@ COPY --from=builder /tmp/packages /tmp/packages
 COPY --chown=nginx:root ./nginx.conf /etc/nginx/nginx.conf
 USER root
 RUN set -ex \
-    && apt-get update \
-    && apt-get upgrade -y \
+    && apt update \
+    && apt upgrade -y \
     && . /tmp/packages/modules.env \
     && for module in $BUILT_MODULES; do \
-           apt-get install --no-install-suggests --no-install-recommends -y /tmp/packages/nginx-module-${module}_${NGINX_VERSION}*.deb; \
+           apt install --no-install-suggests --no-install-recommends -y /tmp/packages/nginx-module-${module}_${NGINX_VERSION}*.deb; \
        done \
     && rm -rf /tmp/packages \
     && rm -rf /var/lib/apt/lists/*

@@ -7,6 +7,7 @@ RUN apk update \
 	bash \
 	curl \
 	git \
+	libpcap-dev \
 	libssh-dev \
 	screen \
 	gcc \

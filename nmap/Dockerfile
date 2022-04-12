@@ -7,3 +7,4 @@ RUN apk update \
 	&& rm -rf /var/cache/apk/*
 
 ENTRYPOINT [ "nmap" ]
+CMD [ "--help" ]

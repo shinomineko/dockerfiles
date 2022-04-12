@@ -9,3 +9,4 @@ RUN apk update \
 	&& pip install --no-cache-dir httpie
 
 ENTRYPOINT [ "http" ]
+CMD [ "--help" ]

@@ -8,4 +8,5 @@ RUN apk update \
 	&& mkdir -p /aria2/download \
 	&& chmod 1777 /aria2
 
-ENTRYPOINT [ "/usr/bin/aria2c", "-d /aria2/download" ]
+ENTRYPOINT [ "aria2c", "-d /aria2/download" ]
+CMD [ "--help" ]

@@ -10,4 +10,5 @@ RUN apk update \
 
 WORKDIR /data
 
-ENTRYPOINT [ "/usr/bin/skopeo" ]
+ENTRYPOINT [ "skopeo" ]
+CMD [ "--help" ]

@@ -1,5 +1,5 @@
 FROM debian:bullseye-slim
-ARG MDBOOK_VERSION="v0.4.15"
+ARG MDBOOK_VERSION="v0.4.17"
 LABEL maintainer "sc@shinomin.me"
 ADD https://github.com/rust-lang/mdBook/releases/download/${MDBOOK_VERSION}/mdbook-${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz /tmp/mdbook.tar.gz
 RUN apt-get update \

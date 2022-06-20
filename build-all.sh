@@ -6,6 +6,7 @@ REPO="${REPO:-docker.io/shinomineko}"
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 JOBS="${JOBS:-2}"
 ERRORS="$(pwd)/errors"
+GIT_COMMIT_SHORT="$(git rev-parse --short HEAD)"
 
 build_and_push() {
 	base=$1
@@ -13,7 +14,7 @@ build_and_push() {
 	build_dir=$3
 
 	echo "building ${REPO}/${base}:${suite} for context ${build_dir}"
-	docker build --rm -t "${REPO}/${base}:${suite}" "${build_dir}" || return 1
+	docker build --rm --label "commit=${GIT_COMMIT_SHORT}" -t "${REPO}/${base}:${suite}" "${build_dir}" || return 1
 
 	echo "===================================================================="
 	echo "successfully built ${REPO}/${base}:${suite} for context ${build_dir}"

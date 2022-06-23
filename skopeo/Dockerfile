@@ -1,5 +1,4 @@
 FROM alpine:3.16
-LABEL maintainer "sc@shinomin.me"
 
 RUN apk update \
 	&& apk upgrade \

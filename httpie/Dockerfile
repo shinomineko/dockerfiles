@@ -1,5 +1,4 @@
 FROM python:3-alpine
-LABEL maintainer "sc@shinomin.me"
 
 RUN apk update \
 	&& apk upgrade \

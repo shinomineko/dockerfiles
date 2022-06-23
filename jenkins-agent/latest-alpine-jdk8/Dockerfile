@@ -1,5 +1,4 @@
 FROM jenkins/inbound-agent:latest-alpine-jdk8
-LABEL maintainer "sc@shinomin.me"
 
 USER root
 RUN apk update \

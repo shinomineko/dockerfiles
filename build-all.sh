@@ -14,7 +14,10 @@ build_and_push() {
 	build_dir=$3
 
 	echo "building ${REPO}/${base}:${suite} for context ${build_dir}"
-	docker build --rm --label "commit=${GIT_COMMIT_SHORT}" -t "${REPO}/${base}:${suite}" "${build_dir}" || return 1
+	docker build --rm \
+		--label "me.shinomin.containers.image.source=https://github.com/shinomineko/dockerfiles" \
+		--label "me.shinomin.containers.image.revision=${GIT_COMMIT_SHORT}" \
+		-t "${REPO}/${base}:${suite}" "${build_dir}" || return 1
 
 	echo "===================================================================="
 	echo "successfully built ${REPO}/${base}:${suite} for context ${build_dir}"

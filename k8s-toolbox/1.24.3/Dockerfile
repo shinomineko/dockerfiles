@@ -12,6 +12,8 @@ RUN apt-get update \
 		ca-certificates \
 		curl \
 		git \
+		vim \
+		watch \
 		--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 

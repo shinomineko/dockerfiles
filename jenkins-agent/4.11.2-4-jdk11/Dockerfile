@@ -14,6 +14,7 @@ RUN apt-get update \
 	less \
 	make \
 	unzip \
+	wget \
 	zip \
 	--no-install-recommends \
 	&& rm -rf /var/lib/api/lists/*
@@ -26,6 +27,6 @@ RUN curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscli
 	&& curl -sfL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLI_VERSION}.tgz -o docker.tgz \
 	&& tar xzf docker.tgz \
 	&& cp ./docker/docker /usr/local/bin/docker \
-	&& rm -rf docker docker.tgz
+	&& rm -rf docker*
 
 USER jenkins

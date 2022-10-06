@@ -5,6 +5,7 @@ ARG KUSTOMIZE_VERSION=4.5.5
 ARG OC_VERSION=4.10.22
 ARG KUBENS_VERSION=0.9.4
 ARG HELM_VERSION=3.9.1
+ARG STERN_VERSION=1.22.0
 
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -44,5 +45,11 @@ RUN curl -sLO https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz \
 	&& chmod a+x /usr/local/bin/helm \
 	&& rm -rf helm-v${HELM_VERSION}-linux-amd64.tar.gz linux-amd64 \
 	&& helm plugin install https://github.com/databus23/helm-diff
+
+RUN curl -sLO https://github.com/stern/stern/releases/download/v${STERN_VERSION}/stern_${STERN_VERSION}_linux_amd64.tar.gz \
+	&& tar zxf stern_${STERN_VERSION}_linux_amd64.tar.gz \
+	&& mv stern /usr/local/bin/stern \
+	&& chmod a+x /usr/local/bin/stern \
+	&& rm -f stern_${STERN_VERSION}_linux_amd64.tar.gz LICENSE
 
 WORKDIR /app

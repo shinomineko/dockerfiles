@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 PUSH="${PUSH:-false}"
@@ -6,7 +6,7 @@ REPO="${REPO:-docker.io/shinomineko}"
 SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 JOBS="${JOBS:-2}"
 ERRORS="$(pwd)/errors"
-GIT_COMMIT_SHORT="$(git rev-parse --short HEAD)"
+GIT_COMMIT_HASH="$(git rev-parse HEAD)"
 
 build_and_push() {
 	base=$1
@@ -15,8 +15,11 @@ build_and_push() {
 
 	echo "building ${REPO}/${base}:${suite} for context ${build_dir}"
 	docker build --rm \
-		--label "me.shinomin.containers.image.source=https://github.com/shinomineko/dockerfiles" \
-		--label "me.shinomin.containers.image.revision=${GIT_COMMIT_SHORT}" \
+		--label "org.opencontainers.image.title=${base}" \
+		--label "org.opencontainers.image.url=https://github.com/shinomineko/dockerfiles" \
+		--label "org.opencontainers.image.source=https://github.com/shinomineko/dockerfiles" \
+		--label "org.opencontainers.image.created=$(date --iso-8601=seconds)" \
+		--label "org.opencontainers.image.revision=${GIT_COMMIT_HASH}" \
 		-t "${REPO}/${base}:${suite}" "${build_dir}" || return 1
 
 	echo "===================================================================="

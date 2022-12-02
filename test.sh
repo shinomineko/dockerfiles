@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 
 VALIDATE_REPO="https://github.com/shinomineko/dockerfiles.git"

@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 ADD https://github.com/VirtusLab/render/releases/latest/download/render-linux-amd64 /usr/local/bin/render
 RUN apk update \

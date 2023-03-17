@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:4.11.2-4-jdk11
+FROM jenkins/inbound-agent:4.13.3-1-jdk11
 
 USER root
 RUN apt-get update \

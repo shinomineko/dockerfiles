@@ -20,7 +20,7 @@ RUN apt-get update \
 		wget \
 		zip \
 	--no-install-recommends \
-	&& rm -rf /var/lib/api/lists/*
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir \
 		pypsrp \

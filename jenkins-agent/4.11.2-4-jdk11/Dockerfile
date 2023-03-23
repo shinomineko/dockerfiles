@@ -18,7 +18,7 @@ RUN apt-get update \
 	wget \
 	zip \
 	--no-install-recommends \
-	&& rm -rf /var/lib/api/lists/*
+	&& rm -rf /var/lib/apt/lists/*
 
 ARG DOCKER_CLI_VERSION=20.10.23
 ARG KUBECTL_VERSION=1.24.11

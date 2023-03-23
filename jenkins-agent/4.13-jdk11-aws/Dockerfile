@@ -23,12 +23,17 @@ RUN apt-get update \
 	&& rm -rf /var/lib/api/lists/*
 
 RUN pip install --no-cache-dir \
+		boto3 \
 		pypsrp \
 		pywinrm
 
 ARG DOCKER_CLI_VERSION=20.10.23
 
-RUN curl -sfL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLI_VERSION}.tgz -o docker.tgz \
+RUN curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
+	&& unzip awscliv2.zip \
+	&& ./aws/install \
+	&& rm -f awscliv2.zip \
+	&& curl -sfL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLI_VERSION}.tgz -o docker.tgz \
 	&& tar xzf docker.tgz \
 	&& cp ./docker/docker /usr/local/bin/docker \
 	&& rm -rf docker* \

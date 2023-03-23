@@ -1,11 +1,11 @@
 FROM debian:bullseye-slim
 
-ARG KUBECTL_VERSION=1.24.3
-ARG KUSTOMIZE_VERSION=4.5.5
-ARG OC_VERSION=4.10.22
+ARG KUBECTL_VERSION=1.26.3
+ARG KUSTOMIZE_VERSION=5.0.1
+ARG OC_VERSION=4.12.9
 ARG KUBENS_VERSION=0.9.4
-ARG HELM_VERSION=3.9.1
-ARG STERN_VERSION=1.22.0
+ARG HELM_VERSION=3.11.2
+ARG STERN_VERSION=1.24.0
 
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -52,4 +52,4 @@ RUN curl -sLO https://github.com/stern/stern/releases/download/v${STERN_VERSION}
 	&& chmod a+x /usr/local/bin/stern \
 	&& rm -f stern_${STERN_VERSION}_linux_amd64.tar.gz LICENSE
 
-WORKDIR /app
+WORKDIR /work

@@ -1,26 +1,10 @@
+.PHONY: dry
+dry: ## dry run the build
+	@docker buildx bake --print --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
+
 .PHONY: build
 build: ## build all the dockerfiles in the repository
-	@$(CURDIR)/build-all.sh
-
-.PHONY: test
-test: shellcheck diff ## run tests on the repository
-
-# allocate a tty if running interactively
-INTERACTIVE := $(shell [ -t 0 ] && echo 1 || echo 0)
-ifeq ($(INTERACTIVE), 1)
-	DOCKERFLAGS += -t
-endif
-
-.PHONY: shellcheck
-shellcheck: ## run shellcheck on the scripts
-	docker run --rm -i $(DOCKERFLAGS) \
-		--name dot-shellcheck \
-		-v $(CURDIR):/src:ro \
-		shinomineko/shellcheck ./shellcheck.sh
-
-.PHONY: diff
-diff: ## test the changes to the dockerfiles
-	@$(CURDIR)/test.sh
+	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
 
 .PHONY: help
 help:

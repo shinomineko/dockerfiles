@@ -5,6 +5,7 @@ RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt install -y \
 		ansible \
+		apt-transport-https \
 		bash \
 		ca-certificates \
 		curl \
@@ -15,12 +16,17 @@ RUN apt-get update \
 		less \
 		make \
 		maven \
-		openjdk-11-jre \
 		python3-pip \
 		unzip \
 		wget \
 		zip \
-	--no-install-recommends \
+	--no-install-recommends
+
+RUN mkdir -p /etc/apt/keyrings \
+	&& wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc \
+	&& echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list \
+	&& apt-get update \
+	&& apt-get install -y temurin-11-jre --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir \

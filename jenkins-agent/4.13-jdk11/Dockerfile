@@ -16,6 +16,7 @@ RUN apt-get update \
 		make \
 		maven \
 		python3-pip \
+		sshpass \
 		unzip \
 		wget \
 		zip \

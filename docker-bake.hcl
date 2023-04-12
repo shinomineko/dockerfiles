@@ -3,7 +3,6 @@ group "default" {
     "aria2",
     "htpasswd",
     "httpie",
-    "jenkins_agent_4_11_jdk11",
     "jenkins_agent_4_13_jdk8",
     "jenkins_agent_4_13_jdk11",
     "jenkins_agent_4_13_jdk8_aws",
@@ -62,15 +61,6 @@ target "httpie" {
   platforms = ["linux/amd64"]
   tags = [
     "${REGISTRY}/shinomineko/httpie:latest"
-  ]
-}
-
-target "jenkins_agent_4_11_jdk11" {
-  context = "jenkins-agent/4.11.2-4-jdk11"
-  labels = merge("${LABELS}", {"org.opencontainers.image.title" = "jenkins-agent"})
-  platforms = ["linux/amd64"]
-  tags = [
-    "${REGISTRY}/shinomineko/jenkins-agent:4.11.2-4-jdk11"
   ]
 }
 

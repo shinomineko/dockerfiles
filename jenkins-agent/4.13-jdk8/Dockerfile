@@ -34,7 +34,7 @@ RUN pip install --no-cache-dir \
 		pypsrp \
 		pywinrm
 
-ARG DOCKER_CLI_VERSION=20.10.23
+ARG DOCKER_CLI_VERSION=20.10.24
 
 RUN curl -sfL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLI_VERSION}.tgz -o docker.tgz \
 	&& tar xzf docker.tgz \

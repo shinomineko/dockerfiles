@@ -35,7 +35,7 @@ RUN pip install --no-cache-dir \
 		pypsrp \
 		pywinrm
 
-ARG DOCKER_CLI_VERSION=20.10.23
+ARG DOCKER_CLI_VERSION=20.10.24
 
 RUN curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
 	&& unzip awscliv2.zip \

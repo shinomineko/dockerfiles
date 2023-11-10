@@ -6,6 +6,10 @@ dry: ## dry run the build
 build: ## build all the dockerfiles in the repository
 	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
 
+.PHONY: publish
+publish: ## build and push the target
+	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)" --push $(target)
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

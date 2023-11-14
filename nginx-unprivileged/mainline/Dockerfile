@@ -1,6 +1,7 @@
 # credits to https://github.com/nginxinc/docker-nginx/tree/master/modules
 
-FROM nginx:mainline as builder
+ARG BASE_NGINX_VERSION="1.25.2"
+FROM "nginx:${BASE_NGINX_VERSION}" as builder
 
 ARG ENABLED_MODULES="headers-more"
 

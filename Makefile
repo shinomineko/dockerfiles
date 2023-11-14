@@ -2,12 +2,16 @@
 dry: ## dry run the build
 	@docker buildx bake --print --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
 
-.PHONY: build
-build: ## build all the dockerfiles in the repository
+.PHONY: all
+all: ## build all the dockerfiles in the repository
 	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
 
+.PHONY: build
+build: ## build the $target
+	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)" $(target)
+
 .PHONY: publish
-publish: ## build and push the target
+publish: ## build and push the $target
 	@docker buildx bake --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)" --push $(target)
 
 .PHONY: help

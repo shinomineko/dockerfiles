@@ -16,6 +16,7 @@ RUN apt-get update \
 		less \
 		make \
 		maven \
+		parallel \
 		python3-pip \
 		sshpass \
 		unzip \

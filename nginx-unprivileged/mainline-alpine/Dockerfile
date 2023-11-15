@@ -1,6 +1,6 @@
 # credits to https://github.com/nginxinc/docker-nginx/tree/master/modules
 
-ARG BASE_NGINX_VERSION="1.25.2"
+ARG BASE_NGINX_VERSION="1.25.3"
 FROM "nginx:${BASE_NGINX_VERSION}-alpine" as builder
 
 ARG ENABLED_MODULES="headers-more"

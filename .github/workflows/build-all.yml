@@ -25,9 +25,9 @@ jobs:
           username: shinomineko
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: bake
-        uses: docker/bake-action@v4.0.0
-        with:
-          push: true
-          set: |
-            *.labels.org.opencontainers.image.revision=${{ github.sha }}
+      - run: make build
+        shell: bash
+        env:
+          PUSH: 'true'
+          JOBS: '4'
+          DOCKER_BUILDKIT: '1'

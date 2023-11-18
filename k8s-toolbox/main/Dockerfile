@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG KUBECTL_VERSION="1.28.4"
 ARG KUSTOMIZE_VERSION="5.2.1"

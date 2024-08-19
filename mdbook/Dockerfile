@@ -1,4 +1,4 @@
-FROM rust:1 as builder
+FROM rust:1 AS builder
 WORKDIR /app
 RUN cargo install --git https://github.com/rust-lang/mdBook.git mdbook \
 	&& cargo install mdbook-mermaid

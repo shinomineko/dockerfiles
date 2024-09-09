@@ -16,35 +16,30 @@ function "_replace_slash" {
   result = replace(str, "/", ":")
 }
 
-function "make_tags" {
-  params = [ctx]
-  result = contains([ctx], "/") ? [ "${REGISTRY}/${_replace_slash(ctx)}" ] : [ "${REGISTRY}/${ctx}:latest" ]
-}
-
 target "default" {
   matrix = {
     item = [
-      { title = "aria2", ctx = "aria2" },
-      { title = "htpasswd", ctx = "htpasswd" },
-      { title = "httpie", ctx = "httpie" },
+      { title = "aria2", ctx = "aria2/latest" },
+      { title = "htpasswd", ctx = "htpasswd/latest" },
+      { title = "httpie", ctx = "httpie/latest" },
       { title = "jenkins-agent", ctx = "jenkins-agent/4.13-jdk11" },
       { title = "jenkins-agent", ctx = "jenkins-agent/4.13-jdk11-aws" },
       { title = "jenkins-agent", ctx = "jenkins-agent/4.13-jdk8" },
       { title = "jenkins-agent", ctx = "jenkins-agent/4.13-jdk8-aws" },
       { title = "k8s-toolbox", ctx = "k8s-toolbox/main" },
-      { title = "mdbook", ctx = "mdbook" },
+      { title = "mdbook", ctx = "mdbook/latest" },
       { title = "nginx-unprivileged", ctx = "nginx-unprivileged/mainline" },
       { title = "nginx-unprivileged", ctx = "nginx-unprivileged/mainline-alpine" },
-      { title = "nmap", ctx = "nmap" },
-      { title = "render", ctx = "render" },
-      { title = "shellcheck", ctx = "shellcheck" },
-      { title = "skopeo", ctx = "skopeo" },
-      { title = "squid", ctx = "squid" },
+      { title = "nmap", ctx = "nmap/latest" },
+      { title = "render", ctx = "render/latest" },
+      { title = "shellcheck", ctx = "shellcheck/latest" },
+      { title = "skopeo", ctx = "skopeo/latest" },
+      { title = "squid", ctx = "squid/latest" },
       { title = "toolbox", ctx = "toolbox/alpine" },
       { title = "toolbox", ctx = "toolbox/ubuntu" },
       { title = "toolbox", ctx = "toolbox/ubuntu-no-nc" },
-      { title = "torproxy", ctx = "torproxy" },
-      { title = "transmission", ctx = "transmission" },
+      { title = "torproxy", ctx = "torproxy/latest" },
+      { title = "transmission", ctx = "transmission/latest" },
     ]
   }
 
@@ -52,5 +47,7 @@ target "default" {
   context = item.ctx
   platform = [ "linux/amd64" ]
   labels = merge("${LABELS}", { "org.opencontainers.image.title" = item.title })
-  tags = make_tags(item.ctx)
+  tags = [
+    "${REGISTRY}/${_replace_slash(item.ctx)}"
+  ]
 }

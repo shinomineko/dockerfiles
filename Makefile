@@ -1,6 +1,6 @@
 .PHONY: build
 build: ## build all the dockerfiles in the repository
-	@$(CURDIR)/build-all.sh
+	@docker buildx bake --no-cache --load --set *.labels.org.opencontainers.image.revision="$(shell git rev-parse HEAD)"
 
 .PHONY: test
 test: shellcheck diff ## run tests on the repository

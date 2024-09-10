@@ -45,7 +45,7 @@ target "default" {
 
   name = replace(replace(item.ctx, "/", "-"), ".", "-")
   context = item.ctx
-  platform = [ "linux/amd64" ]
+  platforms = [ "linux/amd64" ]
   labels = merge("${LABELS}", { "org.opencontainers.image.title" = item.title })
   tags = [
     "${REGISTRY}/${_replace_slash(item.ctx)}"

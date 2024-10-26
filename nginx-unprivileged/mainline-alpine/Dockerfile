@@ -1,21 +1,20 @@
 # credits to https://github.com/nginxinc/docker-nginx/tree/master/modules
 
-ARG BASE_NGINX_VERSION="1.27.1"
+ARG BASE_NGINX_VERSION="1.27.2"
 FROM "nginx:${BASE_NGINX_VERSION}-alpine" AS builder
 
 ARG ENABLED_MODULES="headers-more"
 
 COPY ./ /modules/
 
-RUN set -ex \
-    && apk update \
+RUN apk update \
     && apk add linux-headers openssl-dev pcre2-dev zlib-dev openssl abuild \
                musl-dev libxslt libxml2-utils make mercurial gcc unzip git \
-               xz g++ coreutils \
+               xz g++ coreutils curl \
     # allow abuild as a root user \
     && printf "#!/bin/sh\\nSETFATTR=true /usr/bin/abuild -F \"\$@\"\\n" > /usr/local/bin/abuild \
     && chmod +x /usr/local/bin/abuild \
-    && hg clone -r ${NGINX_VERSION}-${PKG_RELEASE} https://hg.nginx.org/pkg-oss/ \
+    && git clone -b ${NGINX_VERSION}-${PKG_RELEASE} https://github.com/nginx/pkg-oss/ \
     && cd pkg-oss \
     && mkdir /tmp/packages \
     && for module in $ENABLED_MODULES; do \

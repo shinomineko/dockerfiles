@@ -1,11 +1,10 @@
-FROM jenkins/inbound-agent:4.13.3-1-jdk8
+FROM jenkins/inbound-agent:3291.vb_131b_dc231fa_-1-jdk17
 
 USER root
 RUN apt-get update \
 	&& apt-get upgrade -y \
 	&& apt install -y \
 		ansible \
-		apt-transport-https \
 		bash \
 		ca-certificates \
 		curl \
@@ -22,21 +21,16 @@ RUN apt-get update \
 		unzip \
 		wget \
 		zip \
-	--no-install-recommends
-
-RUN mkdir -p /etc/apt/keyrings \
-	&& wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc \
-	&& echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list \
-	&& apt-get update \
-	&& apt-get install -y temurin-11-jre --no-install-recommends \
+	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir \
+		--break-system-packages \
 		boto3 \
 		pypsrp \
 		pywinrm
 
-ARG DOCKER_CLI_VERSION=20.10.24
+ARG DOCKER_CLI_VERSION=27.5.1
 
 RUN curl -sfL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip \
 	&& unzip awscliv2.zip \

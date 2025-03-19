@@ -24,6 +24,8 @@ target "default" {
       { title = "httpie", ctx = "httpie/latest" },
       { title = "jenkins-agent", ctx = "jenkins-agent/3291.vb_131b_dc231fa_-1-jdk17" },
       { title = "jenkins-agent", ctx = "jenkins-agent/3291.vb_131b_dc231fa_-1-jdk17-aws" },
+      { title = "jenkins-agent", ctx = "jenkins-agent/3291.vb_131b_dc231fa_-1-jdk17-jdk8" },
+      { title = "jenkins-agent", ctx = "jenkins-agent/3291.vb_131b_dc231fa_-1-jdk17-jdk11" },
       { title = "k8s-toolbox", ctx = "k8s-toolbox/main" },
       { title = "mdbook", ctx = "mdbook/latest" },
       { title = "nginx-unprivileged", ctx = "nginx-unprivileged/mainline" },

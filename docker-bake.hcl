@@ -36,8 +36,7 @@ target "default" {
       { title = "skopeo", ctx = "skopeo/latest" },
       { title = "squid", ctx = "squid/latest" },
       { title = "toolbox", ctx = "toolbox/alpine" },
-      { title = "toolbox", ctx = "toolbox/ubuntu" },
-      { title = "toolbox", ctx = "toolbox/ubuntu-no-nc" },
+      { title = "toolbox", ctx = "toolbox/debian" },
       { title = "torproxy", ctx = "torproxy/latest" },
       { title = "transmission", ctx = "transmission/latest" },
     ]

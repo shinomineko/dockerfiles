@@ -1,11 +1,11 @@
 FROM debian:bookworm-slim
 
-ARG KUBECTL_VERSION="1.30.3"
-ARG KUSTOMIZE_VERSION="5.4.3"
+ARG KUBECTL_VERSION="1.32.3"
+ARG KUSTOMIZE_VERSION="5.6.0"
 ARG OC_VERSION="latest-4.16"
 ARG KUBENS_VERSION="0.9.5"
-ARG HELM_VERSION="3.15.4"
-ARG STERN_VERSION="1.30.0"
+ARG HELM_VERSION="3.17.2"
+ARG STERN_VERSION="1.32.0"
 
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -18,7 +18,7 @@ RUN apt-get update \
 		--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -sLo /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+RUN curl -sLo /usr/local/bin/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
 	&& chmod a+x /usr/local/bin/kubectl
 
 RUN curl -sLO https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz \

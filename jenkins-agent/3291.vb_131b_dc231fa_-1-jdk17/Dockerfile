@@ -30,11 +30,14 @@ RUN pip install --no-cache-dir \
 		pywinrm
 
 ARG DOCKER_CLI_VERSION=27.5.1
+ARG DOCKER_BUILDX_VERSION=0.22.0
 
 RUN curl -sfL https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_CLI_VERSION}.tgz -o docker.tgz \
 	&& tar xzf docker.tgz \
 	&& cp ./docker/docker /usr/local/bin/docker \
 	&& rm -rf docker* \
+	&& curl --create-dirs -sfL https://github.com/docker/buildx/releases/download/v${DOCKER_BUILDX_VERSION}/buildx-v${DOCKER_BUILDX_VERSION}.linux-amd64 -o /usr/local/lib/docker/cli-plugins/docker-buildx \
+	&& chmod -R a+x /usr/local/lib/docker \
 	&& curl -sfLo /usr/local/bin/kubectl "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
 	&& chmod a+x /usr/local/bin/kubectl
 

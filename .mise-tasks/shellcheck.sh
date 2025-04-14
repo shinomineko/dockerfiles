@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#MISE description="run shellcheck on every shell script"
 set -eo pipefail
 
 ERRORS=()

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#MISE description="test the changes to the dockerfiles"
 set -eo pipefail
 
 VALIDATE_REPO="https://github.com/shinomineko/dockerfiles.git"

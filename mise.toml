@@ -1,0 +1,3 @@
+[tasks.build]
+description = "build all images"
+run = "docker buildx bake --no-cache --load --set *.labels.org.opencontainers.image.revision=\"$(git rev-parse HEAD)\""

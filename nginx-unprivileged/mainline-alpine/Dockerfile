@@ -1,6 +1,6 @@
 # credits to https://github.com/nginxinc/docker-nginx/tree/master/modules
 
-ARG BASE_NGINX_VERSION="1.27.4"
+ARG BASE_NGINX_VERSION="1.27.5"
 FROM "nginx:${BASE_NGINX_VERSION}-alpine" AS builder
 
 ARG ENABLED_MODULES="headers-more"
@@ -9,7 +9,7 @@ COPY ./ /modules/
 
 RUN apk update \
     && apk add linux-headers openssl-dev pcre2-dev zlib-dev openssl abuild \
-               musl-dev libxslt libxml2-utils make mercurial gcc unzip git \
+               musl-dev libxslt libxml2-utils make gcc unzip git \
                xz g++ coreutils curl \
     # allow abuild as a root user \
     && printf "#!/bin/sh\\nSETFATTR=true /usr/bin/abuild -F \"\$@\"\\n" > /usr/local/bin/abuild \

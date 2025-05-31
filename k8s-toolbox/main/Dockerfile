@@ -6,6 +6,8 @@ ARG OC_VERSION="latest-4.18"
 ARG KUBENS_VERSION="0.9.5"
 ARG HELM_VERSION="3.17.2"
 ARG STERN_VERSION="1.32.0"
+ARG ARGOCD_VERSION="3.0.5"
+ARG ARGO_ROLLOUTS_VERSION="1.8.2"
 
 RUN apt-get update \
 	&& apt-get upgrade -y \
@@ -51,5 +53,11 @@ RUN curl -sLO https://github.com/stern/stern/releases/download/v${STERN_VERSION}
 	&& mv stern /usr/local/bin/stern \
 	&& chmod a+x /usr/local/bin/stern \
 	&& rm -f stern_${STERN_VERSION}_linux_amd64.tar.gz LICENSE
+
+RUN curl -sLo /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VERSION}/argocd-linux-amd64 \
+  && chmod a+x /usr/local/bin/argocd
+
+RUN curl -sLo /usr/local/bin/kubectl-argo-rollouts https://github.com/argoproj/argo-rollouts/releases/download/v${ARGO_ROLLOUTS_VERSION}/kubectl-argo-rollouts-linux-amd64 \
+  && chmod a+x /usr/local/bin/kubectl-argo-rollouts
 
 WORKDIR /work

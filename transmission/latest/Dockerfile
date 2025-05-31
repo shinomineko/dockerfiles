@@ -1,4 +1,4 @@
-FROM alpine:3.21
+FROM alpine:3.22
 
 RUN apk update \
 	&& apk upgrade \
@@ -11,7 +11,7 @@ RUN apk update \
 	/transmission/config \
 	&& chmod 1777 /transmission
 
-ENV TRANSMISSION_HOME /transmission/config
+ENV TRANSMISSION_HOME=/transmission/config
 
 EXPOSE 9091
 

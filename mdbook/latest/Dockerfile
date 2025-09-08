@@ -1,7 +1,6 @@
 FROM rust:1 AS builder
 WORKDIR /app
-RUN cargo install --git https://github.com/rust-lang/mdBook.git mdbook \
-	&& cargo install mdbook-mermaid
+RUN cargo install mdbook mdbook-mermaid
 
 FROM cgr.dev/chainguard/glibc-dynamic:latest-dev
 COPY --from=builder /usr/local/cargo/bin/mdbook /usr/local/bin/mdbook

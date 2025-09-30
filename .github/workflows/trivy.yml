@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
     steps:
       - name: login to registry
-        uses: docker/login-action@v3.5.0
+        uses: docker/login-action@v3.6.0
         with:
           username: shinomineko
           password: ${{ secrets.DOCKERHUB_TOKEN }}

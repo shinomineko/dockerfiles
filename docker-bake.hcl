@@ -47,6 +47,13 @@ group "nginx" {
   ]
 }
 
+group "mdbook" {
+  targets = [
+    "mdbook-latest",
+    "mdbook-04"
+  ]
+}
+
 target "aria2" {
   context = "aria2/latest"
   platforms = [
@@ -135,7 +142,7 @@ target "k8s-toolbox" {
   ]
 }
 
-target "mdbook" {
+target "mdbook-latest" {
   context = "mdbook/latest"
   platforms = [
     "linux/amd64"
@@ -143,6 +150,17 @@ target "mdbook" {
   labels = merge("${LABELS}", { "org.opencontainers.image.title" = "mdbook" })
   tags = [
     "${REGISTRY}/mdbook:latest"
+  ]
+}
+
+target "mdbook-04" {
+  context = "mdbook/0.4.52"
+  platforms = [
+    "linux/amd64"
+  ]
+  labels = merge("${LABELS}", { "org.opencontainers.image.title" = "mdbook" })
+  tags = [
+    "${REGISTRY}/mdbook:0.4.52"
   ]
 }
 
